@@ -23,7 +23,7 @@
 
         <p><strong>Time:</strong> 7:30 PM</p>
 
-        <p><strong>Venue: </strong>Houston Stadium</p>
+        <p id="stadium">Fetch Data</p>
 
         <button onclick="getMatches()">View Score</button>
       </div>
@@ -36,8 +36,11 @@
             return response.json()
         })
         .then(data=>{
-            console.log(data);
+            // console.log(data);
+            const venue = document.getElementById("stadium")
+            venue.textContent =  data.venue + " Stadium"
         })
+
     }
   </script>
 </html>
