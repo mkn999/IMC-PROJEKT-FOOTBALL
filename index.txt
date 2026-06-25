@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today's Match</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Today's Match</h1>
+
+      <div class="match-card">
+        <div class="sub-container">
+          <img id="homeFlag" />
+
+          <h2 id="homeTeam"></h2>
+
+          <h3>VS</h3>
+
+          <h2 id="awayTeam"></h2>
+
+          <img id="awayFlag" />
+        </div>
+        <p><strong>Date:</strong> 26 June 2026</p>
+
+        <p><strong>Time:</strong> 7:30 PM</p>
+
+        <p id="stadium">Fetch Data</p>
+
+        <button onclick="getMatches()">View Score</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function getMatches() {
+      fetch("http://127.0.0.1:5000/matches")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // console.log(data);
+
+        //   const homeflag = document.getElementById("homeFlag");
+        //   const awayflag = document.getElementById("awayFlag");
+        //   const awayTeam = document.getElementById("awayTeam");
+        //   const homeTeam = document.getElementById("homeTeam");
+        //   const venue = document.getElementById("stadium");
+        //   homeflag.src = data.homeTeamFlag;
+        //   homeflag.alt = data.homeTeam + " Flag";
+        //   awayflag.src = data.awayTeamFlag;
+        //   awayflag.alt = data.awayTeam + " Flag";
+        //   awayTeam.textContent = data.awayTeam;
+        //   homeTeam.textContent = data.homeTeam;
+        //   venue.textContent = data.venue + " Stadium";
+        for(let key in data){
+            match = data[key];
+            console.log(match.homeTeam +" vs " + match.awayTeam);
+
+        }
+        });
+    }
+  </script>
+</html>

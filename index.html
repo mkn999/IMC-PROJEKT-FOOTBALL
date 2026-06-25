@@ -13,34 +13,49 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1 class="title">Today's Match</h1>
+    <div id="matches">
+      <button onclick="getMatches()">Load Matches</button>
 
-      <div class="match-card">
-        <h2>Argentina vs France</h2>
-
-        <p><strong>Date:</strong> 26 June 2026</p>
-
-        <p><strong>Time:</strong> 7:30 PM</p>
-
-        <p id="stadium">Fetch Data</p>
-
-        <button onclick="getMatches()">View Score</button>
-      </div>
+      <div id="container"></div>
     </div>
   </body>
   <script>
     function getMatches() {
-        fetch("http://127.0.0.1:5000/matches")
-        .then(response =>{
-            return response.json()
+      fetch("http://127.0.0.1:5000/matches")
+        .then((response) => {
+          return response.json();
         })
-        .then(data=>{
-            // console.log(data);
-            const venue = document.getElementById("stadium")
-            venue.textContent =  data.venue + " Stadium"
-        })
+        .then((data) => {
+          const container = document.getElementById("container");
+          container.innerHTML = "";
+          for (let key in data) {
+            match = data[key];
+            container.innerHTML += `
+ <div class="match-card">
 
+            <div class="teams">
+
+    <div class="team">
+        <img src="${match.homeTeamFlag}">
+        <h2>${match.homeTeam}</h2>
+    </div>
+
+    <h3>VS</h3>
+
+    <div class="team">
+        <img src="${match.awayTeamFlag}">
+        <h2>${match.awayTeam}</h2>
+    </div>
+
+</div>
+            <p>${match.venue}</p>
+
+            <p>${match.time}</p>
+
+        </div>
+            `;
+          }
+        });
     }
   </script>
 </html>
