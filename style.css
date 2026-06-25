@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(
+        circle at top,
+        #4a3b12 0%,
+        #1a1a1a 35%,
+        #0d0d0d 70%,
+        #000000 100%
+    );
+    min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.title {
+  font-size: 40px;
+  color: aliceblue;
+  font-family: "Cinzel", serif;
+}
+.match-card {
+  background: rgb(26, 24, 24);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+.match-card h2 {
+  margin-bottom: 15px;
+  color:  #f7d774;
+}
+
+.match-card p {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+button {
+    background: linear-gradient(135deg, #f7d774, #b8860b);
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ffd700, #d4af37);
+}
