@@ -54,17 +54,19 @@
         <h1>This is the rollnumber: <span id="rollnumber"></span></h1>
         <h1>This is the address: <span id="address"></span></h1>
         <h1>This is the registerNumber: <span id="registerNumber"></span></h1>
+         <button onclick="fetchData()">fetch</button>
     </div>
 </body>
 <script>
     function fetchData() {
-        fetch("URL")
+        fetch("http://127.0.0.1:5000/data")
             .then((response) => {
-                return respone.json()
+                return respone.json();
             })
             .then((data) => {
                 console.log(data);
             })
+
         const name = document.getElementById("name");
         const age = document.getElementById("age");
         const clazz = document.getElementById("class");
