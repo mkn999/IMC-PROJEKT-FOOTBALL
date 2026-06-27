@@ -54,31 +54,33 @@
         <h1>This is the rollnumber: <span id="rollnumber"></span></h1>
         <h1>This is the address: <span id="address"></span></h1>
         <h1>This is the registerNumber: <span id="registerNumber"></span></h1>
+        <button onclick="fetchData()">fetch</button>
     </div>
 </body>
 <script>
     function fetchData() {
-        fetch("URL")
+        fetch("http://127.0.0.1:5000/data")
             .then((response) => {
-                return respone.json()
+                return response.json();
             })
             .then((data) => {
-                console.log(data);
+                const dayta = data;
+                const name = document.getElementById("name");
+                const age = document.getElementById("age");
+                const clazz = document.getElementById("class");
+                const rnumber = document.getElementById("rnumber");
+                const address = document.getElementById("address");
+                const registerNumber = document.getElementById("registerNumber");
+
+
+                name.textContent = dayta.name
+                age.textContent = dayta.age
+                clazz.textContent = dayta.class
+                rnumber.textContent = dayta.rnumber
+                address.textContent = dayta.address
+                registerNumber.textContent = dayta.registerNumber
             })
-        const name = document.getElementById("name");
-        const age = document.getElementById("age");
-        const clazz = document.getElementById("class");
-        const rnumber = document.getElementById("rnumber");
-        const address = document.getElementById("address");
-        const registerNumber = document.getElementById("registerNumber");
 
-
-        name.textContent = data.name
-        age.textContent = data.age
-        clazz.textContent = data.class
-        rnumber.textContent = data.rnumber
-        address.textContent = data.address
-        registerNumber.textContent = data.registerNumber
     }
 </script>
 
