@@ -50,6 +50,10 @@
     <div class="container">
         <h1>This is the name: <span id="name"></span></h1>
         <h1>This is the age: <span id="age"></span></h1>
+        <h1>This is the name: <span id="class"></span></h1>
+        <h1>This is the age: <span id="rollnumber"></span></h1>
+        <h1>This is the name: <span id="address"></span></h1>
+        <h1>This is the age: <span id="registerNumber"></span></h1>
     </div>
 </body>
 <script>
@@ -63,8 +67,18 @@
             })
         const name = document.getElementById("name");
         const age = document.getElementById("age");
+        const clazz = document.getElementById("class");
+        const rnumber = document.getElementById("rnumber");
+        const address = document.getElementById("address");
+        const registerNumber = document.getElementById("registerNumber");
+
+
         name.textContent = data.name
         age.textContent = data.age
+        clazz.textContent = data.class
+        rnumber.textContent = data.rnumber
+        address.textContent = data.address
+        registerNumber.textContent = data.registerNumber
     }
 </script>
 
