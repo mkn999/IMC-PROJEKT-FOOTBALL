@@ -5,21 +5,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/test")
-def greet():
-    headers = {
-        "x-auth-token":"28242fce050d42118b6e9b9863124f97",
-    }
-
-    response = requests.get("https://api.football-data.org/v4/matches",
-                            headers=headers)
-    teams = []
-    data = response.json()
-    realdata = data["matches"]
-    for match in realdata:
-        teams.append(match["awayTeam"]["name"] + " vs " + match["homeTeam"]["name"])
-    return "<br>".join(teams) # it makes the list japan,south korea, india etc
-
 data = {
     "match1":{
     "venue":"Houstoun",
@@ -39,6 +24,24 @@ data = {
     },
 
 }
+
+@app.route("/test")
+def greet():
+    headers = {
+        "x-auth-token":"28242fce050d42118b6e9b9863124f97",
+    }
+
+    response = requests.get("https://api.football-data.org/v4/matches",
+                            headers=headers)
+    teams = []
+    data = response.json()
+    realdata = data["matches"]
+    for match in realdata:
+        teams.append(match["awayTeam"]["name"] + " vs " + match["homeTeam"]["name"])
+    return "<br>".join(teams)
+
+
+
 @app.route("/matches")
 def matches():
     return jsonify(data)
