@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Match</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        width: 350px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      #message {
+        margin-top: 15px;
+        text-align: center;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Add Match</h2>
+
+      <input type="text" id="homeTeam" placeholder="Home Team" />
+
+      <input type="text" id="awayTeam" placeholder="Away Team" />
+
+      <input type="text" id="stadium" placeholder="Stadium Name" />
+
+      <input type="text" id="time" placeholder="Match Time" />
+
+      <button onclick="sendData()">Submit</button>
+
+      <p id="message"></p>
+    </div>
+
+    <script>
+      async function sendData() {
+        const data = {
+          homeTeam: document.getElementById("homeTeam").value,
+          awayTeam: document.getElementById("awayTeam").value,
+          stadium: document.getElementById("stadium").value,
+          time: document.getElementById("time").value,
+        };
+        console.log(data);
+
+        try {
+          const response = await fetch("http://127.0.0.1:5000/sendMatches", {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+          const result = await response.json();
+        } catch (error) {
+          console.error("Error sending data:", error);
+          document.getElementById("message").textContent =
+            "Error sending data. Please try again.";
+        }
+      }
+    </script>
+  </body>
+</html>

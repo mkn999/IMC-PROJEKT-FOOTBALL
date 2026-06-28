@@ -20,37 +20,43 @@
     </div>
   </body>
   <script>
+    function convertToIST(utcTime) {
+      return new Date(utcTime).toLocaleString("en-IN", {
+        timeZone: "Asia/Kolkata",
+      });
+    }
     function getMatches() {
-      fetch("http://127.0.0.1:5000/matches")
+      fetch("http://127.0.0.1:5000/getMatches")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           const container = document.getElementById("container");
+          // console.log(data);
           container.innerHTML = "";
           for (let key in data) {
             match = data[key];
+            console.log(match);
             container.innerHTML += `
  <div class="match-card">
 
             <div class="teams">
 
     <div class="team">
-        <img src="${match.homeTeamFlag}">
-        <h2>${match.homeTeam}</h2>
+        <img src="${match.homeTeam.crest}">
+        <h2>${match.homeTeam.name}</h2>
     </div>
 
     <h3>VS</h3>
 
     <div class="team">
-        <img src="${match.awayTeamFlag}">
-        <h2>${match.awayTeam}</h2>
+        <img src="${match.awayTeam.crest}">
+        <h2>${match.awayTeam.name}</h2>
     </div>
 
 </div>
-            <p>${match.venue}</p>
 
-            <p>${match.time}</p>
+            <p>${convertToIST(match.utcDate)}</p>
 
         </div>
             `;

@@ -1,4 +1,4 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify,request
 import requests
 from flask_cors import CORS
 
@@ -45,5 +45,31 @@ def greet():
 @app.route("/matches")
 def matches():
     return jsonify(data)
+
+@app.route("/sendMatches", methods=["POST"])
+def sendMatches():
+    data = request.get_json()
+
+    print(data)
+    return jsonify({
+        "message":"data received sucessfully !"
+    })
+
+@app.route("/getMatches")
+def fifaMatches():
+    headers = {
+        "x-auth-token":"28242fce050d42118b6e9b9863124f97",
+    }
+
+    response = requests.get("https://api.football-data.org/v4/matches",
+                            headers=headers)
+    teams = []
+    data = response.json()
+    sendingData = data["matches"]
+    # realdata = data["matches"]
+    # for match in realdata:
+    #     teams.append(match["awayTeam"]["name"] + " vs " + match["homeTeam"]["name"])
+    # return "<br>".join(teams)
+    return jsonify(sendingData)
 
 app.run(debug=True)
